@@ -1,0 +1,11 @@
+image:
+  repository:
+  tag: 
+  pullPolicy:
+
+service:
+  port: "8080"
+  type: "ClusterIP"
+
+ingress:
+  host: 

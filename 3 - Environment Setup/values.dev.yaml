@@ -1,0 +1,22 @@
+global:
+  replicaCount: 1
+  image:
+    repositoryUrl: "jakubdebosz"
+    tag: "latest"
+    pullPolicy: "Always"
+  serviceAccountName: "12fa-sa"
+
+backend:
+  service:
+    port: 8080
+    type: "NodePort"
+  ingress:
+    host: "api.localhost"
+  initMessage: "Init message display"
+
+frontend:
+  service:
+    port: 8080
+    type: "NodePort"
+  ingress:
+    host: "terminal.localhost"

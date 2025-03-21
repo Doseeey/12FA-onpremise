@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    service: frontend
+spec:
+  replicas: {{ .Values.global.replicaCount }}
+  selector:
+    matchLabels:
+      service: frontend
+  template:
+    metadata:
+      labels:
+        service: frontend
+    spec:
+      serviceAccountName: {{ .Values.global.serviceAccountName }}
+      containers:
+        - name: frontend
+          image: "{{ .Values.global.image.repositoryUrl }}/frontend:{{ .Values.global.image.tag }}"
+          imagePullPolicy: {{ .Values.global.image.pullPolicy }}
+          ports:
+            - name: https
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP

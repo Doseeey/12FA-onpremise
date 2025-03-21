@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    service: backend
+spec:
+  replicas: {{ .Values.global.replicaCount }}
+  selector:
+    matchLabels:
+      service: backend
+  template:
+    metadata:
+      labels:
+        service: backend
+    spec:
+      serviceAccountName: {{ .Values.global.serviceAccountName }}
+      containers:
+        - name: backend
+          image: "{{ .Values.global.image.repositoryUrl }}/backend:{{ .Values.global.image.tag }}"
+          imagePullPolicy: {{ .Values.global.image.pullPolicy }}
+          env:
+            - name: INIT_MESSAGE
+              value: {{ .Values.initMessage }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP

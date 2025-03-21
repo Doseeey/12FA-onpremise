@@ -1,0 +1,22 @@
+global:
+  replicaCount: 1
+  image:
+    repositoryUrl: ""
+    tag: ""
+    pullPolicy: "Always"
+  serviceAccountName: "sa"
+
+backend:
+  service:
+    port: 8080
+    type: "ClusterIP"
+  ingress:
+    host: ""
+  initMessage: ""
+
+frontend:
+  service:
+    port: 8080
+    type: "ClusterIP"
+  ingress:
+    host: ""
