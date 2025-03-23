@@ -1,20 +1,24 @@
 global:
   replicaCount: 1
   image:
-    repositoryUrl: "jakubdebosz"
-    tag: "latest"
     pullPolicy: "Always"
-  serviceAccountName: "12fa-sa"
+  serviceAccountName: "terminal-sa"
 
 backend:
+  image:
+    name: "jakubdebosz/backend"
+    tag: "latest"
   service:
     port: 8080
     type: "NodePort"
   ingress:
     host: "api.localhost"
-  initMessage: "Init message display"
+  initMessage: "Init message display from separate values file"
 
 frontend:
+  image:
+    name: "jakubdebosz/frontend"
+    tag: "latest"
   service:
     port: 8080
     type: "NodePort"

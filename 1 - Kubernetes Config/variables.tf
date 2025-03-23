@@ -5,7 +5,7 @@ variable "kube-context" {
 
 variable "root-domain" {
   type    = string
-  default = ""
+  default = "localhost"
 }
 
 variable "database_username" {
@@ -15,7 +15,7 @@ variable "database_username" {
 
 variable "database_password" {
   type    = string
-  default = "pgadmin"
+  default = "zaq1@WSX"
 }
 
 variable "pg_username" {
@@ -34,16 +34,41 @@ variable "issuer_email" {
 }
 
 variable "docker_username" {
-  type = string
-  default = ""
+  type    = string
+  default = "jakubdebosz"
 }
 
 variable "docker_password" {
-  type = string
-  default = ""
+  type    = string
+  default = "Herbatka09*"
 }
 
 variable "repositories" {
-  type = list(string)
+  type    = list(string)
   default = ["backend", "frontend"]
+}
+
+variable "frontend_image" {
+  type    = string
+  default = "jakubdebosz/frontend:latest"
+}
+
+variable "backend_image" {
+  type    = string
+  default = "jakubdebosz/backend:latest"
+}
+
+variable "environment_values" {
+  type    = string
+  default = "../../3 - Environment Setup/values.dev.yaml"
+}
+
+variable "chart_path" {
+  type    = string
+  default = "2 - Application Config/terminal"
+}
+
+variable "chart_repository" {
+  type    = string
+  default = "https://gitlab.com/projects_jakub/iaac.git"
 }

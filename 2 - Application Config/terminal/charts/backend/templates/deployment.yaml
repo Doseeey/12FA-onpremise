@@ -17,7 +17,7 @@ spec:
       serviceAccountName: {{ .Values.global.serviceAccountName }}
       containers:
         - name: backend
-          image: "{{ .Values.global.image.repositoryUrl }}/backend:{{ .Values.global.image.tag }}"
+          image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.global.image.pullPolicy }}
           env:
             - name: INIT_MESSAGE

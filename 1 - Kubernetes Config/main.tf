@@ -15,6 +15,23 @@ module "argocd" {
   depends_on         = [module.ingress-nginx]
 }
 
+module "argocd-image-updater" {
+  source             = "./2a - Image Updater"
+  kubeconfig_context = var.kube-context
+  argocd_namespace   = module.argocd.argocd_namespace
+}
+
+module "argocd-application" {
+  source             = "./2b - ArgoCD Application"
+  kubeconfig_context = var.kube-context
+  argocd_namespace   = module.argocd.argocd_namespace
+  frontend_image     = var.frontend_image
+  backend_image      = var.backend_image
+  environment_values = var.environment_values
+  chart_path         = var.chart_path
+  chart_repository   = var.chart_repository
+}
+
 module "postgres" {
   source             = "./3 - Postgres Database"
   root-domain        = var.root-domain
@@ -34,7 +51,7 @@ module "pgadmin" {
 }
 
 module "container-registry" {
-  source = "./5 - Container Registry"
-  repositories = var.repositories
+  source          = "./5 - Container Registry"
+  repositories    = var.repositories
   docker_username = var.docker_username
 }

@@ -1,7 +1,6 @@
 image:
-  repository:
+  name:
   tag: 
-  pullPolicy:
 
 service:
   port: "8080"

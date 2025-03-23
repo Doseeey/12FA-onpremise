@@ -1,22 +1,26 @@
 global:
   replicaCount: 1
   image:
-    repositoryUrl: ""
-    tag: ""
     pullPolicy: "Always"
-  serviceAccountName: "sa"
+  serviceAccountName: "terminal-sa"
 
 backend:
+  image:
+    name: 
+    tag:
   service:
     port: 8080
-    type: "ClusterIP"
+    type: "NodePort"
   ingress:
-    host: ""
-  initMessage: ""
+    host: "api.localhost"
+  initMessage: "TEST MESSAGE FROM K8S"
 
 frontend:
+  image:
+    name:
+    tag:
   service:
     port: 8080
-    type: "ClusterIP"
+    type: "NodePort"
   ingress:
-    host: ""
+    host: "terminal.localhost"

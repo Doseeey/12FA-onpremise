@@ -9,3 +9,7 @@ output "argocd_admin_password" {
 output "debug_manifest" {
   value = data.http.argocd_manifest.response_body
 }
+
+output "argocd_namespace" {
+  value = kubernetes_namespace.argocd-namespace.metadata.0.name
+}

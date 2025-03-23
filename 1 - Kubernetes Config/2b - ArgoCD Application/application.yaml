@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: List
+metadata:
+  resourceVersion: ""
+items:
+- apiVersion: argoproj.io/v1alpha1
+  kind: Application
+  metadata:
+    annotations:
+      argocd-image-updater.argoproj.io/backend.helm.image-name: backend.image.name
+      argocd-image-updater.argoproj.io/backend.helm.image-tag: backend.image.tag
+      argocd-image-updater.argoproj.io/backend.update-strategy: digest
+      argocd-image-updater.argoproj.io/frontend.helm.image-name: frontend.image.name
+      argocd-image-updater.argoproj.io/frontend.helm.image-tag: frontend.image.tag
+      argocd-image-updater.argoproj.io/frontend.update-strategy: digest
+      argocd-image-updater.argoproj.io/image-list: backend=${backend_image},
+        frontend=${frontend_image}
+    name: terminal
+    namespace: ${argocd_namespace}
+  spec:
+    destination:
+      namespace: default
+      server: https://kubernetes.default.svc
+    project: default
+    source:
+      helm:
+        valueFiles:
+        - ${environment_values}
+      path: ${chart_path}
+      repoURL: ${chart_repository}
+      targetRevision: HEAD
+    syncPolicy:
+      automated:
+        selfHeal: true
+      syncOptions:
+      - PruneLast=true
