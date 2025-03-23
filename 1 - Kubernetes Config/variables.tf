@@ -15,7 +15,7 @@ variable "database_username" {
 
 variable "database_password" {
   type    = string
-  default = "zaq1@WSX"
+  default = ""
 }
 
 variable "pg_username" {
@@ -35,12 +35,12 @@ variable "issuer_email" {
 
 variable "docker_username" {
   type    = string
-  default = "jakubdebosz"
+  default = ""
 }
 
 variable "docker_password" {
   type    = string
-  default = "Herbatka09*"
+  default = ""
 }
 
 variable "repositories" {
@@ -50,12 +50,12 @@ variable "repositories" {
 
 variable "frontend_image" {
   type    = string
-  default = "jakubdebosz/frontend:latest"
+  default = ""
 }
 
 variable "backend_image" {
   type    = string
-  default = "jakubdebosz/backend:latest"
+  default = ""
 }
 
 variable "environment_values" {
